@@ -28,4 +28,7 @@ class TestCal:
     @pytest.mark.parametrize("a, b, result", yaml.safe_load(open("cal_data.yml", "rb"))["div"],
                              ids=["int", "bignum", "float", "negative", "div=0"])
     def test_div(self, testcal, a, b, result):
-        assert result == testcal.div(a, b)
+        if b == 0:
+            print("除数不能为0")
+        else:
+            assert result == testcal.div(a, b)
